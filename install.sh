@@ -6,13 +6,13 @@ chown root:root /tmp
 chmod 1777 /tmp
 
 echo "================= Updating package lists ==================="
-apt-get update -qq
+apt-get update
 
 echo "================= Installing core binaries ==================="
 add-apt-repository -y ppa:ubuntu-toolchain-r/test
-apt-get update -qq
+apt-get update
 
-apt-get install -qq -yy g++-4.9
+apt-get install -yy g++-4.9
 
 rm -rf /usr/local/lib/python2.7/dist-packages/requests*
 pip install --upgrade pip
