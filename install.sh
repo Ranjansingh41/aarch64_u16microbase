@@ -10,7 +10,6 @@ apt-get update -qq
 
 echo "================= Installing core binaries ==================="
 add-apt-repository -y ppa:ubuntu-toolchain-r/test
-#echo "deb http://archive.ubuntu.com/ubuntu xenial main universe restricted multiverse" > /etc/apt/sources.list
 apt-get update -qq
 
 apt-get install -qq -yy g++-4.9
@@ -28,7 +27,6 @@ cp -Rvf node-v4.8.0-linux-arm64/{bin,include,lib,share} /usr/local
 npm install -g forever@0.14.2 grunt grunt-cli
 
 echo "================= Cleaning package lists ==================="
-#apt-get purge libapparmor1 #Yes, do as I say!
 apt-get clean
 apt-get autoclean
 apt-get autoremove
