@@ -21,9 +21,10 @@ hash -r
 echo "================== Installing python requirements ====="
 pip install -r /home/shippable/appBase/requirements.txt
 
-wget https://nodejs.org/dist/v4.8.0/node-v4.8.0-linux-arm64.tar.xz
-tar -xvf node-v4.8.0-linux-arm64.tar.xz
-cp -Rvf node-v4.8.0-linux-arm64/{bin,include,lib,share} /usr/local
+NODE_VERSION=4.8.7
+wget https://nodejs.org/dist/"$NODE_VERSION"/node-"$NODE_VERSION"-linux-arm64.tar.xz
+tar -xvf node-"$NODE_VERSION"-linux-arm64.tar.xz
+cp -Rvf node-"$NODE_VERSION"-linux-arm64/{bin,include,lib,share} /usr/local
 npm install -g forever@0.14.2 grunt grunt-cli
 
 echo "================= Cleaning package lists ==================="
