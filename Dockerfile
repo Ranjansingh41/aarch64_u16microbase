@@ -1,4 +1,4 @@
-FROM drydockaarch64/u16:master
+FROM drydock/aarch64_u16:master
 MAINTAINER Avi "avi@shippable.com"
 
 ENV DEBIAN_FRONTEND noninteractive
