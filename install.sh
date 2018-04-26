@@ -41,6 +41,11 @@ apt-get install -q -y \
   vim=2:7.4* \
   groff=1.22.*
 
+echo "================= Installing Git ==================="
+add-apt-repository ppa:git-core/ppa -y
+apt-get update
+apt-get install -q -y git=1:2.17.0*
+
 echo "================= Installing core binaries ==================="
 add-apt-repository -y ppa:ubuntu-toolchain-r/test
 apt-get update
@@ -57,14 +62,34 @@ pip install -q virtualenv==15.2.0
 pip install -q pyOpenSSL==17.5.0
 rm -rf /usr/local/lib/python2.7/dist-packages/requests*
 
-echo "================== Installing python requirements ====="
-pip install -r /home/shippable/appBase/requirements.txt
+echo "================= Adding JQ 1.5.1 ==================="
+apt-get install -q jq=1.5*
 
+echo "================= Adding apache libcloud 2.3.0 ============"
+sudo pip install 'apache-libcloud==2.3.0'
+
+echo "================= Adding openstack client 3.15.0 ============"
+sudo pip install 'python-openstackclient==3.15.0'
+sudo pip install 'shade==1.27.1'
+
+echo "================== Installing Nodejs  ====="
 NODE_VERSION=v4.8.7
 wget https://nodejs.org/dist/"$NODE_VERSION"/node-"$NODE_VERSION"-linux-arm64.tar.xz
 tar -xvf node-"$NODE_VERSION"-linux-arm64.tar.xz
 cp -Rvf node-"$NODE_VERSION"-linux-arm64/{bin,include,lib,share} /usr/local
 npm install -g forever@0.14.2 grunt grunt-cli
+
+echo "================== Installing python requirements ====="
+pip install -r /home/shippable/appBase/requirements.txt
+
+echo "================= Intalling Shippable CLIs ================="
+
+git clone https://github.com/Shippable/node.git nodeRepo
+./nodeRepo/shipctl/x86_64/Ubuntu_16.04/install.sh
+rm -rf nodeRepo
+
+echo "Installed Shippable CLIs successfully"
+echo "-------------------------------------"
 
 echo "================= Cleaning package lists ==================="
 apt-get clean
